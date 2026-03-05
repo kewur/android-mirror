@@ -107,10 +107,18 @@ Available MCP tools:
 - **Back (◁)** / **Home (○)** / **Recents (□)** — Android nav buttons
 - **Keyboard (⌫)** — toggle text input bar
 
+### Remote access with Tailscale
+
+This was built to be used remotely. Install [Tailscale](https://tailscale.com) on your desktop and phone, then access the mirror from anywhere:
+
+1. Start the mirror server on your desktop (where the Android device is connected via USB)
+2. Open `http://<tailscale-ip>:8080` on your phone's browser
+3. Use an SSH app like [Termius](https://termius.com) to run Claude Code on the desktop, which can use the MCP server to manage Flutter builds + the mirror
+
+The gesture recording approach is key here — since touches are buffered locally and replayed on the server with original timing, network latency doesn't affect gesture accuracy. You draw your swipe, it gets sent as a batch, and replayed exactly as you performed it.
+
 ### Tips
 
-- Works great over **Tailscale** for remote access from anywhere
-- The gesture recording approach means touch latency doesn't matter — your gestures are replayed with original timing on the server
 - FPS and connection status are shown in the browser
 - The scrcpy window is automatically moved to the i3 scratchpad to stay out of the way
 
